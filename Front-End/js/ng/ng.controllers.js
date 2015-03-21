@@ -17,20 +17,20 @@ function WeatherAdapter() {
     var weather = new AdvancedWeather();
 
     return {
-        request: function (country, city, weatherMain, weatherDescription, temp, humidity, pressure, temp_min, temp_max,
-            windSpeed, windDeg, icon) {
+        request: function (country, city, temp, humidity, pressure, temp_min, temp_max,
+            windSpeed, icon, observation_time, date, weatherDescription) {
             return {
                 country: country,
                 city: city,
-                weatherMain: weatherMain,
-                weatherDescription: weatherDescription,
                 temp: weather.roundValue(temp),
                 humidity: humidity,
                 pressure: pressure,
                 temp_min: weather.roundValue(temp_min),
                 temp_max: weather.roundValue(temp_max),
-                iconUrl: weather.getIconUrl(icon),
-                date: weather.getTodayDate()
+                iconUrl: icon,
+                date: date,
+                observation_time: observation_time,
+                weatherDescription: weatherDescription
             };
         }
     };
@@ -55,15 +55,21 @@ var contr = angular.module('app.controllers', [])
                  function successGetPosition(pos) {
 
                      var requestParameters = {
-                         lat: pos.coords.latitude,
-                         lon: pos.coords.longitude,
-                         units: 'metric'
+                         key: '70388b130b191be8c6a64da274a27',
+                         format: 'json',
+                         q: pos.coords.latitude+','+pos.coords.longitude,
+                         num_of_days: 1
                      }
                      console.log(weatherService);
                      weatherService.get(requestParameters, function (response) {
-                         $scope.weatherData=adapter.request(response.sys.country, response.name, response.weather[0].main,
-                            response.weather[0].description, response.main.temp, response.main.humidity, response.main.pressure,
-                            response.main.temp_min, response.main.temp_max);
+                         $scope.weatherData=adapter.request("Belarus", "Grodno",  response.data.current_condition[0].temp_C,
+                          response.data.current_condition[0].humidity, response.data.current_condition[0].pressure,
+                            response.data.weather[0].mintempC, response.data.weather[0].maxtempC, 
+                            response.data.current_condition[0].windspeedKmph,
+                            response.data.current_condition[0].weatherIconUrl[0].value, 
+                            response.data.current_condition[0].observation_time,
+                            response.data.weather[0].date,
+                            response.data.current_condition[0].weatherDesc[0].value);
                          console.log($scope.weatherData);
                      }, function (error) {
 

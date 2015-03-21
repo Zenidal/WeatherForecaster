@@ -1,1 +1,1 @@
-﻿var baseUrlApiWeather = "http://api.openweathermap.org/data/2.5/weather";
+﻿var baseUrlApiWeather = "http://api.worldweatheronline.com/free/v2/weather.ashx";
