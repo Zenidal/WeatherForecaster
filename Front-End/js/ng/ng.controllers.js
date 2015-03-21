@@ -4,7 +4,7 @@ function AdvancedWeather() {
     };
 
     this.getTodayDate=function(){
-        return  new Date().toJSON().slice(0,10);;
+        return  new Date();
     };
 
     this.roundValue=function(value){
