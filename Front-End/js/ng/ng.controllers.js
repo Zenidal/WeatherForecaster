@@ -36,6 +36,7 @@ function WeatherAdapter() {
     };
 };
 
+
 var contr = angular.module('app.controllers', [])
 
     .controller('WeatherAppController', [

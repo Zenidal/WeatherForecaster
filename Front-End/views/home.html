@@ -13,18 +13,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-6 col-md-6 last-update">
+                <div class="col-xs-6 col-md-6 temperature">
                     <div class="tempreture-font">
                         {{weatherData.temp}}°C  <img src="{{weatherData.iconUrl}}" alt="..." class="img-circle">
                     </div>
                 </div>
-                <div class="col-xs-6 col-md-6 time">
-                    <h1>{{weatherData.observation_time}}</h1>
+                <div id="time" class="col-xs-6 col-md-6 time">
+                    <h1>Тут нужно выводить текущее время</h1>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-md-6temperature">
-                    <h1>Updated two hours past.</h1>
+                <div class="col-xs-12 col-md-12 last-update">
+                    <h1>Updated at {{weatherData.observation_time}}(Здесь необходимо переводить в наше время видимо)</h1>
                 </div>
             </div>
         </div>
