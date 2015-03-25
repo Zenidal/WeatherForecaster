@@ -2,29 +2,30 @@
     <div class="jumbotron">
         <div class="row-fluid">
             <div class="row">
-                <div class="col-xs-3 col-md-2 country">
-                    <h2>{{weatherData.country}}</h2>
+                <div class="col-md-4 text-left country">
+                    <label class="font-size-20">{{locationData.location}}</label>
                 </div>
-                <div class="col-xs-3 col-md-2 city">
-                    <h2>{{weatherData.city}}</h2>
-                </div>
-                <div class="col-xs-3 col-md-2 col-md-offset-2 date">
-                    <h2>{{weatherData.date | date:'dd.MM.yyyy'}}</h2>
+                <div class="col-md-8 text-right  date">
+                    <label class="font-size-20">Observation time: {{weatherData.date | date:'dd.MM.yyyy'}} {{weatherData.observation_time}}</label>
                 </div>
             </div>
+           
             <div class="row">
-                <div class="col-xs-6 col-md-6 temperature">
-                    <div class="tempreture-font">
+                <div class="col-xs-12 col-md-12 temperature">
+                    <div class="font-size-60">
                         {{weatherData.temp}}°C  <img src="{{weatherData.iconUrl}}" alt="..." class="img-circle">
                     </div>
                 </div>
-                <div id="time" class="col-xs-6 col-md-6 time">
-                    <h1>Тут нужно выводить текущее время</h1>
-                </div>
+
             </div>
+            
             <div class="row">
                 <div class="col-xs-12 col-md-12 last-update">
-                    <h1>Updated at {{weatherData.observation_time}}(Здесь необходимо переводить в наше время видимо)</h1>
+                    <label class="font-size-20">Last sync time {{lastSyncTimeWeather | date:'dd.MM.yyyy h:mm:ss a'}}</label>
+                </div>
+
+                <div id="time" class="col-xs-12 col-md-12 time">
+                    <label class="font-size-20">The time is now: {{timeIsNow | date:'dd.MM.yyyy h:mm:ss a'}}</label>
                 </div>
             </div>
         </div>
