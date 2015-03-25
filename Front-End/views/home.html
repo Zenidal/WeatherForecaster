@@ -12,16 +12,20 @@
            
             <div class="row">
                 <div class="col-xs-12 col-md-12 temperature">
-                    <div class="font-size-60">
+                    <label class="font-size-60">
                         {{weatherData.temp}}°C  <img src="{{weatherData.iconUrl}}" alt="..." class="img-circle">
-                    </div>
+                    </label>
                 </div>
 
             </div>
             
             <div class="row">
                 <div class="col-xs-12 col-md-12 last-update">
-                    <label class="font-size-20">Last sync time {{lastSyncTimeWeather | date:'dd.MM.yyyy h:mm:ss a'}}</label>
+                    <label class="font-size-20">Last sync time of weather: {{weatherData.sync_time | date:'dd.MM.yyyy h:mm:ss a'}}</label>
+                </div>
+
+                <div class="col-xs-12 col-md-12 last-update">
+                    <label class="font-size-20">Last sync time of location: {{locationData.sync_time | date:'dd.MM.yyyy h:mm:ss a'}}</label>
                 </div>
 
                 <div id="time" class="col-xs-12 col-md-12 time">

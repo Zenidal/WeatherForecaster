@@ -1,11 +1,4 @@
 function AdvancedWeather() {
-    this.getIconUrl = function(iconName) {
-        return "http://openweathermap.org/img/w/"+iconName+".png";
-    };
-
-    this.getTodayDate = function() {
-        return  new Date();
-    };
 
     this.roundValue = function(value) {
         return Math.round(value);
@@ -22,12 +15,11 @@ function WeatherAdapter() {
                 temp: weather.roundValue(dataRequest.data.current_condition[0].temp_C),
                 humidity: dataRequest.data.current_condition[0].humidity,
                 pressure: dataRequest.data.current_condition[0].pressure,
-                temp_min: weather.roundValue(dataRequest.data.weather[0].mintempC),
-                temp_max: weather.roundValue(dataRequest.data.weather[0].maxtempC),
                 iconUrl:  dataRequest.data.current_condition[0].weatherIconUrl[0].value,
                 date: dataRequest.data.weather[0].date,
                 observation_time: dataRequest.data.current_condition[0].observation_time,
-                weatherDescription: dataRequest.data.current_condition[0].weatherDesc[0].value
+                weatherDescription: dataRequest.data.current_condition[0].weatherDesc[0].value,
+                sync_time: Date.now()
             };
         }
     };
@@ -54,7 +46,8 @@ function GeotargetingAdapter() {
     return {
         request: function (dataRequest) {
             return {
-                location:  geotargeting.getLocationFromResponse(dataRequest)
+                location:  geotargeting.getLocationFromResponse(dataRequest),
+                sync_time: Date.now()
             };
         }
     };
@@ -71,8 +64,8 @@ var contr = angular.module('app.controllers', [])
     ])
 
     // Path: /Home
-    .controller('HomeController', ['$scope','$rootScope', '$location','weatherService', 'geotargetingService',
-             function ($scope, $rootScope, $location, weatherService, geotargetingService) {
+    .controller('HomeController', ['$scope','$rootScope', '$location','weatherService', 'geotargetingService', 'weatherStorageService', 'locationStorageService',
+             function ($scope, $rootScope, $location, weatherService, geotargetingService, weatherStorageService, locationStorageService) {
 
                  var weatherAdapter = new WeatherAdapter();
                  var geotargetingAdapter = new GeotargetingAdapter();
@@ -90,9 +83,10 @@ var contr = angular.module('app.controllers', [])
 
                      weatherService.get(requestParametersToWeatherApi, function (response) {
                          $scope.weatherData = weatherAdapter.request(response);
-                         $scope.lastSyncTimeWeather = Date.now(); 
+                         weatherStorageService.clearLocationStorage();
+                         weatherStorageService.saveWeatherData($scope.weatherData);
                      }, function (error) {
-
+                        $scope.weatherData = weatherStorageService.getWeatherData();
                      });
 
                      var requestParametersToGeotargetingApi = {
@@ -103,8 +97,10 @@ var contr = angular.module('app.controllers', [])
 
                      geotargetingService.get(requestParametersToGeotargetingApi, function (response) {
                         $scope.locationData = geotargetingAdapter.request(response)
+                        locationStorageService.remove();
+                        locationStorageService.saveLocationData($scope.locationData);
                      }, function (error) {
-
+                        $scope.locationData = locationStorageService.getLocationData();
                      });
 
 
