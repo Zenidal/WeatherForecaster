@@ -72,6 +72,8 @@ var contr = angular.module('app.controllers', [])
 
                  $scope.timeIsNow =  Date.now(); 
 
+                  
+
                  function successGetPosition(pos) {
 
                      var requestParametersToWeatherApi = {
@@ -83,7 +85,7 @@ var contr = angular.module('app.controllers', [])
 
                      weatherService.get(requestParametersToWeatherApi, function (response) {
                          $scope.weatherData = weatherAdapter.request(response);
-                         weatherStorageService.clearLocationStorage();
+                         weatherStorageService.clearWeatherStorage();
                          weatherStorageService.saveWeatherData($scope.weatherData);
                      }, function (error) {
                         $scope.weatherData = weatherStorageService.getWeatherData();
@@ -97,7 +99,7 @@ var contr = angular.module('app.controllers', [])
 
                      geotargetingService.get(requestParametersToGeotargetingApi, function (response) {
                         $scope.locationData = geotargetingAdapter.request(response)
-                        locationStorageService.remove();
+                        locationStorageService.clearLocationStorage();
                         locationStorageService.saveLocationData($scope.locationData);
                      }, function (error) {
                         $scope.locationData = locationStorageService.getLocationData();
@@ -110,7 +112,12 @@ var contr = angular.module('app.controllers', [])
                      console.warn('ERROR(' + err.code + '): ' + err.message);
                  };
 
-                 navigator.geolocation.getCurrentPosition(successGetPosition, errorGetPosition);
-
-             }
+                 if (window.navigator.onLine) {
+                    navigator.geolocation.getCurrentPosition(successGetPosition, errorGetPosition);
+                 }
+                else {
+                     $scope.weatherData = weatherStorageService.getWeatherData();
+                     $scope.locationData = locationStorageService.getLocationData();
+                }
+        }
     ]);
