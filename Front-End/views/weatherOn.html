@@ -1,0 +1,52 @@
+<div class="container weather-on">
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            <form novalidate name="dateForm" class="css-form">
+                <input type="button" value="Get weather on" class="btn btn-link btn-lg" ng-click="getWeatherOn(weatherDate)"/>
+                <input type="date" ng-model="weatherDate" name="calendar" class="btn btn-lg" required />
+            </form>
+        </div>
+        <div ng-show="isClicked !== undefined" class="col-xs-12 col-md-9">
+            <div class="jumbotron">
+                <div class="row-fluid">
+                    <div class="row">
+                        <div class="col-md-12 country">
+                            <label class="font-size-20">{{locationData.location}}</label>
+                        </div>
+                        <div class="col-md-12 date">
+                            <label class="font-size-20">Observation time: {{weatherData.date| date:'dd.MM.yyyy'}} {{weatherData.observation_time}}</label>
+                        </div>
+                    </div>
+
+                    <div class="parts" ng-repeat="part in weatherData.partsOfDay">
+                        <div class="col-md-6">
+                            <div class="col-xs-12 col-md-12 temperature">
+                                <label class="font-size-60">
+                                    {{part.dateTemp}}°C  <img src="{{part.dateIconUrl}}" alt="..." class="img-circle">
+                                </label>
+                            </div>
+                            <div class="col-xs-12 col-md-12 pressure">
+                                <label class="font-size-20">
+                                    Pressure: {{part.datePressure}} MBar
+                                </label>
+                            </div>
+                            <div class="col-xs-12 col-md-12 humidity">
+                                <label class="font-size-20">
+                                    Humidity: {{part.dateHumidity}}%
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 date">
+                            <label class="font-size-30">
+                                Date: {{weatherData.date}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

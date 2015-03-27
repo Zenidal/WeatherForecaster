@@ -27,4 +27,8 @@ weatherApp.config(['$routeProvider', '$provide', function ($routeProvider, $prov
             controller: 'HomeController',
             templateUrl: 'views/home.html'
         })
+        .when('/WeatherOn', {
+            controller: 'WeatherOnController',
+            templateUrl: 'views/weatherOn.html'
+        })
 }]);
