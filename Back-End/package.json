@@ -1,13 +1,14 @@
 {
-"name": "weather-api",
-"version": "0.0.1",
-"private": true,
-"scripts": {
-"start": "node server.js"
-},
-"dependencies": {
-"express": "*",
-"jade": "*",
-"mongodb": "*"
-}
+  "name": "weather-api",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "mongodb": "*",
+    "request": "^2.54.0"
+  }
 }
