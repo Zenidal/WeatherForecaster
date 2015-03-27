@@ -26,49 +26,73 @@ function WeatherAdapter() {
                         dateTemp: weather.roundValue(dataRequest.data.weather[0].hourly[0].tempC),
                         dateHumidity: dataRequest.data.weather[0].hourly[0].humidity,
                         datePressure: dataRequest.data.weather[0].hourly[0].pressure,
-                        dateIconUrl: dataRequest.data.weather[0].hourly[0].weatherIconUrl[0].value
+                        dateIconUrl: dataRequest.data.weather[0].hourly[0].weatherIconUrl[0].value,
+                        dateWindSpeed: Math.round(dataRequest.data.weather[0].hourly[0].windspeedKmph / 3.6 * 10) / 10,
+                        dateWindGust: Math.round(dataRequest.data.weather[0].hourly[0].WindGustKmph / 3.6 * 10) / 10,
+                        dateTime: dataRequest.data.weather[0].hourly[0].time/100
                     },
                     {
                         dateTemp: weather.roundValue(dataRequest.data.weather[0].hourly[1].tempC),
                         dateHumidity: dataRequest.data.weather[0].hourly[1].humidity,
                         datePressure: dataRequest.data.weather[0].hourly[1].pressure,
-                        dateIconUrl: dataRequest.data.weather[0].hourly[1].weatherIconUrl[0].value
+                        dateIconUrl: dataRequest.data.weather[0].hourly[1].weatherIconUrl[0].value,
+                        dateWindSpeed: Math.round(dataRequest.data.weather[0].hourly[1].windspeedKmph / 3.6 * 10) / 10,
+                        dateWindGust: Math.round(dataRequest.data.weather[0].hourly[1].WindGustKmph / 3.6 * 10) / 10,
+                        dateTime: dataRequest.data.weather[0].hourly[1].time/100
                     },
                     {
                         dateTemp: weather.roundValue(dataRequest.data.weather[0].hourly[2].tempC),
                         dateHumidity: dataRequest.data.weather[0].hourly[2].humidity,
                         datePressure: dataRequest.data.weather[0].hourly[2].pressure,
-                        dateIconUrl: dataRequest.data.weather[0].hourly[2].weatherIconUrl[0].value
+                        dateIconUrl: dataRequest.data.weather[0].hourly[2].weatherIconUrl[0].value,
+                        dateWindSpeed: Math.round(dataRequest.data.weather[0].hourly[2].windspeedKmph / 3.6 * 10) / 10,
+                        dateWindGust: Math.round(dataRequest.data.weather[0].hourly[2].WindGustKmph / 3.6 * 10) / 10,
+                        dateTime: dataRequest.data.weather[0].hourly[2].time/100
                     },
                     {
                         dateTemp: weather.roundValue(dataRequest.data.weather[0].hourly[3].tempC),
                         dateHumidity: dataRequest.data.weather[0].hourly[3].humidity,
                         datePressure: dataRequest.data.weather[0].hourly[3].pressure,
-                        dateIconUrl: dataRequest.data.weather[0].hourly[3].weatherIconUrl[0].value
+                        dateIconUrl: dataRequest.data.weather[0].hourly[3].weatherIconUrl[0].value,
+                        dateWindSpeed: Math.round(dataRequest.data.weather[0].hourly[3].windspeedKmph / 3.6 * 10) / 10,
+                        dateWindGust: Math.round(dataRequest.data.weather[0].hourly[3].WindGustKmph / 3.6 * 10) / 10,
+                        dateTime: dataRequest.data.weather[0].hourly[3].time/100
                     },
                     {
                         dateTemp: weather.roundValue(dataRequest.data.weather[0].hourly[4].tempC),
                         dateHumidity: dataRequest.data.weather[0].hourly[4].humidity,
                         datePressure: dataRequest.data.weather[0].hourly[4].pressure,
-                        dateIconUrl: dataRequest.data.weather[0].hourly[4].weatherIconUrl[0].value
+                        dateIconUrl: dataRequest.data.weather[0].hourly[4].weatherIconUrl[0].value,
+                        dateWindSpeed: Math.round(dataRequest.data.weather[0].hourly[4].windspeedKmph / 3.6 * 10) / 10,
+                        dateWindGust: Math.round(dataRequest.data.weather[0].hourly[4].WindGustKmph / 3.6 * 10) / 10,
+                        dateTime: dataRequest.data.weather[0].hourly[4].time/100
                     },
                     {
                         dateTemp: weather.roundValue(dataRequest.data.weather[0].hourly[5].tempC),
                         dateHumidity: dataRequest.data.weather[0].hourly[5].humidity,
                         datePressure: dataRequest.data.weather[0].hourly[5].pressure,
-                        dateIconUrl: dataRequest.data.weather[0].hourly[5].weatherIconUrl[0].value
+                        dateIconUrl: dataRequest.data.weather[0].hourly[5].weatherIconUrl[0].value,
+                        dateWindSpeed: Math.round(dataRequest.data.weather[0].hourly[5].windspeedKmph / 3.6 * 10) / 10,
+                        dateWindGust: Math.round(dataRequest.data.weather[0].hourly[5].WindGustKmph / 3.6 * 10) / 10,
+                        dateTime: dataRequest.data.weather[0].hourly[5].time/100
                     },
                     {
                         dateTemp: weather.roundValue(dataRequest.data.weather[0].hourly[6].tempC),
                         dateHumidity: dataRequest.data.weather[0].hourly[6].humidity,
                         datePressure: dataRequest.data.weather[0].hourly[6].pressure,
-                        dateIconUrl: dataRequest.data.weather[0].hourly[6].weatherIconUrl[0].value
+                        dateIconUrl: dataRequest.data.weather[0].hourly[6].weatherIconUrl[0].value,
+                        dateWindSpeed: Math.round(dataRequest.data.weather[0].hourly[6].windspeedKmph / 3.6 * 10) / 10,
+                        dateWindGust: Math.round(dataRequest.data.weather[0].hourly[6].WindGustKmph / 3.6 * 10) / 10,
+                        dateTime: dataRequest.data.weather[0].hourly[6].time/100
                     },
                     {
                         dateTemp: weather.roundValue(dataRequest.data.weather[0].hourly[7].tempC),
                         dateHumidity: dataRequest.data.weather[0].hourly[7].humidity,
                         datePressure: dataRequest.data.weather[0].hourly[7].pressure,
-                        dateIconUrl: dataRequest.data.weather[0].hourly[7].weatherIconUrl[0].value
+                        dateIconUrl: dataRequest.data.weather[0].hourly[7].weatherIconUrl[0].value,
+                        dateWindSpeed: Math.round(dataRequest.data.weather[0].hourly[7].windspeedKmph / 3.6 * 10) / 10,
+                        dateWindGust: Math.round(dataRequest.data.weather[0].hourly[7].WindGustKmph / 3.6 * 10) / 10,
+                        dateTime: dataRequest.data.weather[0].hourly[7].time/100
                     }
                 ]
             };

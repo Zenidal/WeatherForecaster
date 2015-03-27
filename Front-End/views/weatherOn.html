@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="parts" ng-repeat="part in weatherData.partsOfDay">
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-xs-12" style="border: 4px double black; border-radius: 5px;">
                             <div class="col-xs-12 col-md-12 temperature">
                                 <label class="font-size-60">
                                     {{part.dateTemp}}°C  <img src="{{part.dateIconUrl}}" alt="..." class="img-circle">
@@ -33,6 +33,16 @@
                             <div class="col-xs-12 col-md-12 humidity">
                                 <label class="font-size-20">
                                     Humidity: {{part.dateHumidity}}%
+                                </label>
+                            </div>
+                            <div class="col-xs-12 col-md-12 wind">
+                                <label class="font-size-20">
+                                    Wind: {{part.dateWindSpeed}} - {{part.dateWindGust}} Mps
+                                </label>
+                            </div>
+                            <div class="col-xs-12 col-md-12 time">
+                                <label class="font-size-40">
+                                    {{part.dateTime}} o'clock
                                 </label>
                             </div>
                         </div>
