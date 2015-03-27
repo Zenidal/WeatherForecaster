@@ -17,7 +17,11 @@ app.get('/Weather', function(req, res){
 		date: req.query.date }
 
 	request({url: baseUrlApiWeather, qs: requestParams}, function(error, response, body){
-			res.send(body);
+		if (!error && response.statusCode == 200) {
+			res.send(body); }
+		else {
+			res.status(400).send('Error');
+		}
 	});
 });
 
@@ -31,7 +35,11 @@ app.get('/Location', function(req, res){
 		sensor: false };
 
 	request({url: baseUrlApiGeotargeting, qs: requestParams}, function(error, response, body){
-    		res.send(body); 
+    		if (!error && response.statusCode == 200) {
+    		res.send(body); }
+    		else{
+    			res.status(400).send('Error');
+    		}
 	});
 });
 

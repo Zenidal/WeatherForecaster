@@ -156,10 +156,11 @@ var contr = angular.module('app.controllers', [])
                 }
 
                 function errorGetPosition(err) {
+                    $scope.locationData = locationStorageService.getLocationData();
+                    $scope.weatherData = weatherStorageService.getWeatherData();
                     console.warn('ERROR(' + err.code + '): ' + err.message);
-                }
-                ;
-
+                };
+                
                 if (window.navigator.onLine) {
                     navigator.geolocation.getCurrentPosition(successGetPosition, errorGetPosition);
                 }

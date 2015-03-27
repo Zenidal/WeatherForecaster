@@ -24,6 +24,5 @@ js/ng/ng.service.js
 
 NETWORK:
 views/weatherOn.html
-http://api.worldweatheronline.com/free/v2/weather.ashx
-http://maps.googleapis.com/maps/api/geocode/json
+http://localhost:1337/
 http://cdn.worldweatheronline.net/images/
