@@ -1,2 +1,2 @@
-﻿var baseUrlApiWeather = "http://api.worldweatheronline.com/free/v2/weather.ashx";
+﻿var baseUrlApiWeather = "http://localhost:1337/Weather";
 var baseUrlApiGeotargeting = "http://localhost:1337/Location"

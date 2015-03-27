@@ -129,10 +129,8 @@ var contr = angular.module('app.controllers', [])
                 function successGetPosition(pos) {
 
                     var requestParametersToWeatherApi = {
-                        key: '70388b130b191be8c6a64da274a27',
-                        format: 'json',
-                        q: pos.coords.latitude + ',' + pos.coords.longitude,
-                        num_of_days: 1
+                            longitude: pos.coords.longitude,
+                            latitude: pos.coords.latitude,
                     };
 
                     weatherService.get(requestParametersToWeatherApi, function (response) {
@@ -155,8 +153,6 @@ var contr = angular.module('app.controllers', [])
                     }, function (error) {
                         $scope.locationData = locationStorageService.getLocationData();
                     });
-
-
                 }
 
                 function errorGetPosition(err) {
@@ -174,8 +170,9 @@ var contr = angular.module('app.controllers', [])
             }
         ])
 
-        .controller('WeatherOnController', ['$scope', '$rootScope', '$location', 'weatherService', 'geotargetingService', 'weatherStorageService', 'locationStorageService',
-            function ($scope, $rootScope, $location, weatherService, geotargetingService, weatherStorageService, locationStorageService) {
+        .controller('WeatherOnController', ['$scope', '$rootScope', '$location', 'weatherService',
+         'geotargetingService',
+            function ($scope, $rootScope, $location, weatherService, geotargetingService) {
 
                 $scope.getWeatherOn = function (date)
                 {
@@ -191,19 +188,14 @@ var contr = angular.module('app.controllers', [])
                         function successGetPosition(pos)
                         {
                             var requestParametersToWeatherApi = {
-                                key: '70388b130b191be8c6a64da274a27',
-                                format: 'json',
-                                q: pos.coords.latitude + ',' + pos.coords.longitude,
+                                latitude: pos.coords.latitude,
+                                longitude: pos.coords.longitude,
                                 date: $scope.weatherDate,
-                                num_of_days: 1
                             };
 
                             weatherService.get(requestParametersToWeatherApi, function (response) {
                                 $scope.weatherData = weatherAdapter.request(response);
-                                weatherStorageService.clearWeatherStorage();
-                                weatherStorageService.saveWeatherData($scope.weatherData);
                             }, function (error) {
-                                $scope.weatherData = weatherStorageService.getWeatherData();
                             });
 
                             var requestParametersToGeotargetingApi = {
@@ -213,10 +205,7 @@ var contr = angular.module('app.controllers', [])
 
                             geotargetingService.get(requestParametersToGeotargetingApi, function (response) {
                                 $scope.locationData = geotargetingAdapter.request(response)
-                                locationStorageService.clearLocationStorage();
-                                locationStorageService.saveLocationData($scope.locationData);
                             }, function (error) {
-                                $scope.locationData = locationStorageService.getLocationData();
                             });
                         }
 
