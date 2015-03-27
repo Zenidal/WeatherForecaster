@@ -126,8 +126,6 @@ var contr = angular.module('app.controllers', [])
 
                 $scope.timeIsNow = Date.now();
 
-
-
                 function successGetPosition(pos) {
 
                     var requestParametersToWeatherApi = {
@@ -146,9 +144,8 @@ var contr = angular.module('app.controllers', [])
                     });
 
                     var requestParametersToGeotargetingApi = {
-                        latlng: pos.coords.latitude + ',' + pos.coords.longitude,
-                        language: 'EN',
-                        sensor: false
+                            latitude: pos.coords.latitude,
+                            longitude: pos.coords.longitude,
                     };
 
                     geotargetingService.get(requestParametersToGeotargetingApi, function (response) {
@@ -210,9 +207,8 @@ var contr = angular.module('app.controllers', [])
                             });
 
                             var requestParametersToGeotargetingApi = {
-                                latlng: pos.coords.latitude + ',' + pos.coords.longitude,
-                                language: 'EN',
-                                sensor: false
+                                    latitude: pos.coords.latitude,
+                                    longitude: pos.coords.longitude,
                             };
 
                             geotargetingService.get(requestParametersToGeotargetingApi, function (response) {
