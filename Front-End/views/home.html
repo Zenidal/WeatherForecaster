@@ -16,7 +16,19 @@
                         {{weatherData.temp}}°C  <img src="{{weatherData.iconUrl}}" alt="..." class="img-circle">
                     </label>
                 </div>
-
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-6 col-md-4 pressure">
+                    <label class="font-size-20">
+                        Pressure: {{weatherData.pressure}} MBar
+                    </label>
+                </div>
+                <div class="col-xs-6 col-md-4 humidity">
+                    <label class="font-size-20">
+                        Humidity: {{weatherData.humidity}}%
+                    </label>
+                </div>
             </div>
             
             <div class="row">
