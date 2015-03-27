@@ -23,6 +23,7 @@ js/ng/ng.directives.js
 js/ng/ng.service.js
 
 NETWORK:
+views/weatherOn.html
 http://api.worldweatheronline.com/free/v2/weather.ashx
 http://maps.googleapis.com/maps/api/geocode/json
 http://cdn.worldweatheronline.net/images/

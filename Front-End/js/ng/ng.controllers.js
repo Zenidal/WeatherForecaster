@@ -235,8 +235,9 @@ var contr = angular.module('app.controllers', [])
                         }
                         else 
                         {
-                            $scope.weatherData = weatherStorageService.getWeatherData();
-                            $scope.locationData = locationStorageService.getLocationData();
+                                //TO DO if offline??
+                          //  $scope.weatherData = weatherStorageService.getWeatherData();
+                          //  $scope.locationData = locationStorageService.getLocationData();
                         }
                     }
                 };
