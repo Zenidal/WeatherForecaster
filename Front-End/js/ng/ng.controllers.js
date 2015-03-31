@@ -98,11 +98,7 @@ function WeatherAdapter() {
             };
         }
     };
-}
-;
-
-
-
+};
 function AdvancedGeotargeting() {
     this.getLocationFromResponse = function (value) {
         var location;
@@ -113,8 +109,7 @@ function AdvancedGeotargeting() {
         });
         return location;
     };
-}
-;
+};
 
 function GeotargetingAdapter() {
 
@@ -128,128 +123,6 @@ function GeotargetingAdapter() {
             };
         }
     };
-}
-;
+};
 
-
-var contr = angular.module('app.controllers', [])
-
-        .controller('WeatherAppController', [
-            function ($scope, $rootScope, $location) {
-
-
-            }
-        ])
-
-        // Path: /Home
-        .controller('HomeController', ['$scope', '$rootScope', '$location', 'weatherService', 'geotargetingService', 'weatherStorageService', 'locationStorageService',
-            function ($scope, $rootScope, $location, weatherService, geotargetingService, weatherStorageService, locationStorageService) {
-
-                var weatherAdapter = new WeatherAdapter();
-                var geotargetingAdapter = new GeotargetingAdapter();
-
-                $scope.timeIsNow = Date.now();
-
-                function successGetPosition(pos) {
-
-                    var requestParametersToWeatherApi = {
-                            longitude: pos.coords.longitude,
-                            latitude: pos.coords.latitude,
-                    };
-
-                    weatherService.get(requestParametersToWeatherApi, function (response) {
-                        $scope.weatherData = weatherAdapter.request(response);
-                        weatherStorageService.clearWeatherStorage();
-                        weatherStorageService.saveWeatherData($scope.weatherData);
-                    }, function (error) {
-                        $scope.weatherData = weatherStorageService.getWeatherData();
-                    });
-
-                    var requestParametersToGeotargetingApi = {
-                            latitude: pos.coords.latitude,
-                            longitude: pos.coords.longitude,
-                    };
-
-                    geotargetingService.get(requestParametersToGeotargetingApi, function (response) {
-                        $scope.locationData = geotargetingAdapter.request(response)
-                        locationStorageService.clearLocationStorage();
-                        locationStorageService.saveLocationData($scope.locationData);
-                    }, function (error) {
-                        $scope.locationData = locationStorageService.getLocationData();
-                    });
-                }
-
-                function errorGetPosition(err) {
-                    $scope.locationData = locationStorageService.getLocationData();
-                    $scope.weatherData = weatherStorageService.getWeatherData();
-                    console.warn('ERROR(' + err.code + '): ' + err.message);
-                };
-                
-                if (window.navigator.onLine) {
-                    navigator.geolocation.getCurrentPosition(successGetPosition, errorGetPosition);
-                }
-                else {
-                    $scope.weatherData = weatherStorageService.getWeatherData();
-                    $scope.locationData = locationStorageService.getLocationData();
-                }
-            }
-        ])
-
-        .controller('WeatherOnController', ['$scope', '$rootScope', '$location', 'weatherService',
-         'geotargetingService',
-            function ($scope, $rootScope, $location, weatherService, geotargetingService) {
-
-                $scope.getWeatherOn = function (date)
-                {
-                    if (date === undefined)
-                    {
-                        alert("Input date");
-                    }
-                    else
-                    {
-                        $scope.isClicked = true;
-                        var weatherAdapter = new WeatherAdapter();
-                        var geotargetingAdapter = new GeotargetingAdapter();
-                        function successGetPosition(pos)
-                        {
-                            var requestParametersToWeatherApi = {
-                                latitude: pos.coords.latitude,
-                                longitude: pos.coords.longitude,
-                                date: $scope.weatherDate,
-                            };
-
-                            weatherService.get(requestParametersToWeatherApi, function (response) {
-                                $scope.weatherData = weatherAdapter.request(response);
-                            }, function (error) {
-                            });
-
-                            var requestParametersToGeotargetingApi = {
-                                    latitude: pos.coords.latitude,
-                                    longitude: pos.coords.longitude,
-                            };
-
-                            geotargetingService.get(requestParametersToGeotargetingApi, function (response) {
-                                $scope.locationData = geotargetingAdapter.request(response)
-                            }, function (error) {
-                            });
-                        }
-
-                        function errorGetPosition(err) 
-                        {
-                            console.warn('ERROR(' + err.code + '): ' + err.message);
-                        };
-
-                        if (window.navigator.onLine) 
-                        {
-                            navigator.geolocation.getCurrentPosition(successGetPosition, errorGetPosition);
-                        }
-                        else 
-                        {
-                                //TO DO if offline??
-                          //  $scope.weatherData = weatherStorageService.getWeatherData();
-                          //  $scope.locationData = locationStorageService.getLocationData();
-                        }
-                    }
-                };
-            }
-        ]);
+var controllers = angular.module('app.controllers', []);
